@@ -16,7 +16,7 @@ export function LogIn() {
                         <input type="password" id="password" name="password" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
                     </div>
 
-                    <button type="submit" className="w-full px-4 py-2 bg-teal-700 hover:bg-emerald-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-white">¡A crear!</button>
+                    <button type="submit" className="w-full px-4 py-2 bg-teal-700 hover:bg-emerald-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-white">Iniciar Sesión</button>
                     <a className="flex justify-center" href="#">¿No tienes cuenta?, Regístrate</a>
                 </form>
             </div>
