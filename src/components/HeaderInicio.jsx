@@ -17,7 +17,7 @@ export function HeaderInicio() {
                         <LogoVol/>
                         <input 
                         onChange={handleChangeVol}
-                        type="range" id="vol" min="0" max="20" className="w-20 h-3 appearance-none bg-gradient-to-r from-gray-50 to-gray-300 rounded-full outline-none .thumb-custom"/>
+                        type="range" id="vol" min="0" max="20" className="w-20 h-3 appearance-none bg-gradient-to-r from-gray-50 to-gray-300 rounded-full outline-none hover:cursor-grabbing"/>
                     </form>
                 </div>
 

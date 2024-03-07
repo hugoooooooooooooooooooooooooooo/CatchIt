@@ -1,0 +1,20 @@
+{
+    "partidas":[
+        {
+            "id":"1",
+            "nombre":"Partidda 1"
+        },
+        {
+            "id":"2",
+            "nombre":"Partida 2"
+        },
+        {
+            "id":"3",
+            "nombre":"3 ESO"
+        },
+        {
+            "id":"4",
+            "nombre":"Fisica"
+        }
+    ]
+}

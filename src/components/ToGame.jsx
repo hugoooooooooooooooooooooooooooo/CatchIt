@@ -1,4 +1,7 @@
+import {useId} from 'react'
+
 export function ToGame() {
+    const codigoId = useId()
     return (
         <>
             <section className="bg-gradient-to-br from-amber-300 to-yellow-400 h-screen flex items-center justify-center" id="toGame">
@@ -7,10 +10,10 @@ export function ToGame() {
 
                     <form className="space-y-4">
                         <div>
-                            <label for="codigo" className="block text-sm font-medium text-gray-700">Codigo de la sala:</label>
-                            <input type="number" id="codigo" name="codigo" placeholder="123456" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
+                            <label htmlFor={codigoId} className="block text-sm font-medium text-gray-700">Codigo de la sala:</label>
+                            <input type="number" id={codigoId} name="codigo" placeholder="123456" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
                         </div>
-                        <button id="boton" type="submit" className="w-full px-4 py-2 bg-teal-700 hover:bg-emerald-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-white">¡A Jugar!</button>
+                        <button type="submit" className="w-full px-4 py-2 bg-teal-700 hover:bg-emerald-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-white">¡A Jugar!</button>
                     </form>
                 </div>
             </section>

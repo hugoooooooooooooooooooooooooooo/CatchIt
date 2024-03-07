@@ -2,11 +2,14 @@ import {HeaderInicio} from './components/HeaderInicio.jsx'
 import {ToGame} from './components/ToGame.jsx'
 import {Rules} from './components/Rules.jsx'
 import {LogIn} from './components/LogIn.jsx'
+import {Registro} from './components/Registro.jsx'
+import {RepositorioPartidas} from './components/RepositorioPartidas.jsx'
+
 
 function App() {
   return (
     <>
-      <HeaderInicio />
+      {/* <HeaderInicio />
       <main className="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
         <div className="snap-center">
           <ToGame />
@@ -17,7 +20,12 @@ function App() {
         <div className="snap-center">
           <LogIn />
         </div>
-      </main>
+      </main> */}
+
+
+      {/* <Registro/> */}
+
+      <RepositorioPartidas/>
     </>
   )
 }
