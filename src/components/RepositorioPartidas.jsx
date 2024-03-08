@@ -1,3 +1,4 @@
+import { LogoHome } from "./Icons"
 import { partidas } from "./partidas.json"
 import { useState } from "react"
 
@@ -6,7 +7,7 @@ export function RepositorioPartidas() {
     const [filtro, setFiltro] = useState("")
 
     const filtrarPartidas = (event) => {
-        setFiltro(event.target.value)
+        setFiltro(event.target.value) 
     }
     const partidasFiltradas = partidas.filter(partida =>
         partida.nombre.toLowerCase().includes(filtro.toLowerCase())
@@ -24,6 +25,7 @@ export function RepositorioPartidas() {
                         <div className="flex gap-7 mx-5">
                             <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</button>
                             <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTAS</button>
+                            <a href="" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome/>Inicio</a>
                         </div>
                     </div>
                 </header>
