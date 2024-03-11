@@ -10,7 +10,7 @@ export function IntroducirPreguntas() {
     const nivel = useId();
     const dificultad = useId();
     const asignatura = useId();
-    const timepo = useId();
+    const tiempo = useId();
 
     return (
         <>
@@ -94,8 +94,8 @@ export function IntroducirPreguntas() {
                             </select>
                         </div>
                         <div>
-                            <label className='font-semibold' htmlFor={timepo}>Tiempo: </label><br />
-                            <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' type="number" id={timepo} required />
+                            <label className='font-semibold' htmlFor={tiempo}>Tiempo: </label><br />
+                            <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' type="number" id={tiempo} required />
                         </div>
                     </div>
 

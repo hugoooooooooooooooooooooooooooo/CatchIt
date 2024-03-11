@@ -1,0 +1,52 @@
+{
+    "preguntas":[
+        {
+            "id":"1",
+            "enunciado":"Partidda 1",
+            "respuestaCorrecta":"a",
+            "respuesta1":"w",
+            "respuesta2":"x",
+            "respuesta3":"y",
+            "nivelPregunta":"1 ESO",
+            "dificultad":"Facil",
+            "asignatura":"Matematicas",
+            "tiempo":40
+        },
+        {
+            "id":"2",
+            "enunciado":"Partidda 2",
+            "respuestaCorrecta":"a",
+            "respuesta1":"w",
+            "respuesta2":"x",
+            "respuesta3":"y",
+            "nivelPregunta":"1 ESO",
+            "dificultad":"Media",
+            "asignatura":"Matematicas",
+            "tiempo":30
+        },
+        {
+            "id":"3",
+            "enunciado":"Partidda 3",
+            "respuestaCorrecta":"a",
+            "respuesta1":"w",
+            "respuesta2":"x",
+            "respuesta3":"y",
+            "nivelPregunta":"1 ESO",
+            "dificultad":"Facil",
+            "asignatura":"Filosofia",
+            "tiempo":30
+        },
+        {
+            "id":"4",
+            "enunciado":"Partidda 4",
+            "respuestaCorrecta":"a",
+            "respuesta1":"w",
+            "respuesta2":"x",
+            "respuesta3":"y",
+            "nivelPregunta":"1 ESO",
+            "dificultad":"Facil",
+            "asignatura":"Ingles",
+            "tiempo":20
+        }
+    ]
+}
