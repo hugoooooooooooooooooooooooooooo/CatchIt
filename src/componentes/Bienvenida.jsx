@@ -1,20 +1,31 @@
-import {Link, useParams} from "react-router-dom";
-import React from 'react'
-import { useState } from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {React, useState, useEffect} from 'react'
 import axios from "axios";
-import { useEffect } from "react";
+import { LogoHome } from "./Icons";
+import { UseUser } from "../hooks/UseUser";
 
 function Bienvenida() {
-    const {id} = useParams();
-    const [username, setUsername] = useState();
+    const navigate = useNavigate();
+    const{user, setUser} = UseUser();
     const[partidas, setPartidas] = useState([]);
+    const[error, setError] = useState();
+    const userId = sessionStorage.getItem("userId");
+    const cerrarSesion = () =>{
+        sessionStorage.removeItem("userId");
+        navigate("/");
+    }
     const getUser = async () =>{
-        try{
-            const response = await axios.get("http://localhost:8080/api/admin/" + id);
-            setUsername(response.data.username);
-            setPartidas(response.data.partidas);
-        }catch (e){
-            console.log(e);
+        if(userId){
+            try{
+                const response = await axios.get("http://localhost:8080/api/admin/" + userId);
+                setUser(response.data);
+                setPartidas(response.data.partidas);
+            }catch (e){
+                console.log(e);
+            }
+        }
+        else{
+            navigate("/");
         }
     }
     useEffect(() =>{
@@ -29,18 +40,23 @@ function Bienvenida() {
     const partidasFiltradas = partidas.filter(partida =>
         partida.nombre.toLowerCase().includes(filtro.toLowerCase())
     )
+    
     return (
         <>
-            <section className="bg-gradient-to-br from-orange-300 to-rose-600 h-screen">
+            {
+                user ? (
+                    <section className="bg-gradient-to-br from-orange-300 to-rose-600 h-screen">
+                <button onClick={cerrarSesion}>Cerrar sesión </button>
                 <header>
                     <div className="text-center p-8">
-                        <h1 className="font-extrabold animate-flip-down animate-ease-in-out text-5xl">HOLA {username}, ESTAS SON TUS PARTIDAS</h1>
+                        <h1 className="font-extrabold animate-flip-down animate-ease-in-out text-5xl">HOLA {user.username}, ESTAS SON TUS PARTIDAS</h1>
                     </div>
                     <div className="flex justify-between mx-5">
                         <input className="ms-5 w-3/4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300" type="search" placeholder=" Buscar partida" onChange={filtrarPartidas}/>
                         <div className="flex gap-7 mx-5">
                             <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</button>
-                            <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTAS</button>
+                            <Link to="/createPregunta" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTAS</Link>
+                            <Link to="/" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome/>Inicio</Link>
                         </div>
                     </div>
                 </header>
@@ -57,6 +73,10 @@ function Bienvenida() {
                         ))}
                 </main>
             </section>
+                ) : (
+                    <p>{error}</p>
+                )
+            }
         </>
     )
 }

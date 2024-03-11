@@ -1,17 +1,29 @@
 import React from 'react'
+import { LogoEditar } from './Icons';
 
 function Pregunta(props) {
-    const {pregunta, respuestaCorrecta, respuesta1, respuesta2, respuesta3} = props.pregunta;
+    const {id, pregunta, respuestaCorrecta, respuesta1, respuesta2, respuesta3, nivel, dificultad, asignatura, tiempo} = props.pregunta;
     return (
-        <div>
-            <h3>{pregunta}</h3>
-            <ul>
-                <li> Respuesta correcta: {respuestaCorrecta}</li>
-                <li> Respuesta 2: {respuesta1}</li>
-                <li>Respuesta 3: {respuesta2}</li>
-                <li>Respuesta 4: {respuesta3}</li>
-            </ul>
-        </div>
+        <div key={id} className="flex justify-between rounded-lg p-3 bg-red-200 w-full h-auto text-xl hover:bg-red-300 hover:cursor-pointer">
+                            <div >
+                                <p className="font-semibold">{pregunta}</p>
+                                <p>Respuesta Correcta: {respuestaCorrecta}</p>
+                                <p>Respuesta 1: {respuesta1}</p>
+                                <p>Respuesta 2: {respuesta2}</p>
+                                <p>Respuesta 3: {respuesta3}</p>
+                                <p>Nivel: {nivel}</p>
+                                <p>Dificultad: {dificultad}</p>
+                                <p>Asignatura: {asignatura}</p>
+                                <p>Tiempo: {tiempo}</p>
+                            </div>
+                            {
+                                props.owner &&(
+                                    <div className="w-5">
+                                        <LogoEditar />
+                                    </div>
+                                )
+                            }
+                        </div>
     )
 }
 

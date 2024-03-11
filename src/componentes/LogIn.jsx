@@ -2,8 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
+import { LogoHome } from './Icons';
 
-export function LogIn() {
+export function LogIn(props) {
     const {register, handleSubmit} = useForm();
     const[error, setError] = useState();
     const navigate= useNavigate();
@@ -14,10 +15,10 @@ export function LogIn() {
                 password: info.password
             }});
             setError();
-            console.log(response.data.id);
-            navigate("/bienvenida/" + response.data.id);
+            sessionStorage.setItem("userId", response.data.id);
+            navigate("/bienvenida");
         }catch(e){
-            if(e.response.status === 404){
+            if(e.response.satatus && e.response.status === 404){
                 setError("Credenciales incorrectas, vuelve a intentarlo");
             }else{
                 setError("Error de conexión, compruebe la conexión a internet");
@@ -27,18 +28,23 @@ export function LogIn() {
     return(
     <>
         <section className="bg-gradient-to-br from-lime-300 to-green-400 h-screen flex items-center justify-center" id="admin">
+        {   
+            props.home && (
+                <Link to="/" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome/>Inicio</Link>
+            )
+        }
             <div className="bg-white bg-opacity-80 backdrop-blur-lg p-8 rounded-lg shadow-md w-full max-w-md">
                 <h2 className="text-3xl font-extrabold mb-6 text-center">Inicia Sesión</h2>
 
                 <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                     <div>
-                        <label for="username" className="block text-sm font-medium text-gray-700">Usuario:</label>
+                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">Usuario:</label>
                         <input type="text" id="username" name="username" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                         {...register("username")}/>
                     </div>
 
                     <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña:</label>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Contraseña:</label>
                         <input type="password" id="password" name="password" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                         {...register("password")}/>
                     </div>

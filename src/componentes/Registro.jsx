@@ -3,22 +3,26 @@ import { useId } from "react";
 import { useForm } from "react-hook-form";
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { LogoHome } from './Icons';
+import { UseUser } from '../hooks/UseUser';
 
 function Registro() {
     const {register, handleSubmit} = useForm();
+    const {setUser} = UseUser();
     const [error, setError] = useState();
     const navigate = useNavigate();
     const onSubmit = async (info) =>{
         if(info.password === info.passwordRepeated){
             try{
                 const response = await axios.post("http://localhost:8080/api/signin", null, {
-                params: {
-                    username: info.username,
-                    password: info.password,
-                    key: info.key
-                }
-            });
-                navigate("/login");
+                    params: {
+                        username: info.username,
+                        password: info.password,
+                        key: info.key
+                    }
+                });
+                sessionStorage.setItem("userId", response.data.id);
+                navigate("/");
             }catch(e){
                 if(e.response.status === 400){
                     setError("La clave de administrador no es correcta");
@@ -36,7 +40,8 @@ function Registro() {
   
     return (
       <>
-      <section className="bg-gradient-to-br from-fuchsia-600 to-violet-800 h-screen flex items-center justify-center" id="admin">
+      <section className="bg-gradient-to-br from-fuchsia-600 to-violet-800 h-screen flex items-center justify-center">
+        <Link to="/" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome/>Inicio</Link>
         <div className="bg-white bg-opacity-80 backdrop-blur-lg p-8 rounded-lg shadow-md w-full max-w-md">
             <h2 className="text-3xl font-extrabold mb-6 text-center">Regístrate</h2>
   

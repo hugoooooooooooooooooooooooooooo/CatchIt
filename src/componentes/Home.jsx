@@ -3,6 +3,7 @@ import {ToGame} from './ToGame.jsx'
 import {Rules} from './Rules.jsx'
 import {LogIn} from './LogIn.jsx'
 import React from 'react'
+import Footer from './Footer.jsx'
 
 function Home() {
     return (
@@ -16,8 +17,9 @@ function Home() {
                     <Rules />
                     </div>
                     <div className="snap-center">
-                    <LogIn />
+                    <LogIn/>
                     </div>
+                    <Footer></Footer>
                 </main>
         </div>
     )
