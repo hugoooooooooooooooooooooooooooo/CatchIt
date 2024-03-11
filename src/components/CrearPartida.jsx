@@ -84,7 +84,7 @@ export function CrearPartida() {
                     </div>
                 </main>
                 <div className='flex justify-center mt-10'>
-                    <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTA</button>
+                    <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</button>
                 </div>
             </section>
         </>
