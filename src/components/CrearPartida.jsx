@@ -1,5 +1,7 @@
 import React from 'react';
 import { useId } from 'react';
+import { LogoHome } from './Icons';
+import { Link } from 'react-router-dom';
 
 export function CrearPartida() {
     const nivel = useId();
@@ -11,10 +13,13 @@ export function CrearPartida() {
     return (
         <>
             <section className="bg-gradient-to-br from-orange-300 to-rose-600 h-screen">
-                <header className="font-extrabold animate-flip-down animate-ease-in-out text-5xl text-center p-10">
-                    <h1>CREAR PARTIDA</h1>
+                <header className="font-extrabold animate-flip-down animate-ease-in-out text-5xl p-10 flex items-center justify-between">
+                    <h1 className='ms-96 ps-36'>CREAR PARTIDA</h1>
+                    <div className='w-10'>
+                        <Link to="/"><LogoHome /></Link>
+                    </div>
                 </header>
-                <main className='flex flex-col items-center gap-5'> 
+                <main className='flex flex-col items-center gap-5'>
                     <div>
                         <label className='font-semibold' htmlFor={nivel}>Nivel De Pregunta: </label><br />
                         <select

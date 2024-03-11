@@ -1,5 +1,7 @@
 import { useId } from "react";
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { HeaderComun } from "./HeaderComun.jsx";
 
 export function Registro() {
     const usernameId = useId()
@@ -8,7 +10,9 @@ export function Registro() {
 
     return (
         <>
-            <section className="bg-gradient-to-br from-fuchsia-600 to-violet-800 h-screen flex items-center justify-center" id="admin">
+        <section className="bg-gradient-to-br from-fuchsia-600 to-violet-800 h-screen">
+            <HeaderComun/>
+            <body className="flex items-center justify-center" id="registro">
                 <div className="bg-white bg-opacity-80 backdrop-blur-lg p-8 rounded-lg shadow-md w-full max-w-md">
                     <h2 className="text-3xl font-extrabold mb-6 text-center">Regístrate</h2>
 
@@ -38,9 +42,10 @@ export function Registro() {
                         </div>
 
                         <button type="submit" className="w-full px-4 py-2 bg-pink-600 hover:bg-pink-4h00 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-white">Registrar Cuenta</button>
-                        <a className="flex justify-center transition-transform transform hover:scale-110 hover:cursor-pointer">Volver al Inicio de Sesión</a>
+                        <Link to="/login" className="flex justify-center transition-transform transform hover:scale-110 hover:cursor-pointer">Volver al Inicio de Sesión</Link>
                     </form>
                 </div>
+            </body>
             </section>
         </>
     );

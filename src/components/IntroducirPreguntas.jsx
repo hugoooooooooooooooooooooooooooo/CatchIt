@@ -1,5 +1,7 @@
 import React from 'react';
 import { useId } from 'react';
+import { Link } from 'react-router-dom';
+import { LogoHome } from "./Icons"
 
 export function IntroducirPreguntas() {
     const enunciado = useId();
@@ -15,8 +17,11 @@ export function IntroducirPreguntas() {
     return (
         <>
             <section className="bg-gradient-to-br from-orange-300 to-rose-600 h-screen">
-                <header className="font-extrabold animate-flip-down animate-ease-in-out text-5xl text-center p-10">
-                    <h1>INTRODUCIR PREGUNTAS</h1>
+            <header className="font-extrabold animate-flip-down animate-ease-in-out text-5xl p-10 flex items-center justify-between">
+                    <h1 className='ms-96 ps-30'>INTRODUCIR PREGUNTAS</h1>
+                    <div className='w-10'>
+                        <Link to="/"><LogoHome /></Link>
+                    </div>
                 </header>
                 <main className='flex justify-center'>
                     <div className='w-1/2 flex flex-col gap-10'>

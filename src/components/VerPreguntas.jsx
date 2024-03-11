@@ -1,6 +1,8 @@
+import { HeaderRepositorio } from "./HeaderRepositorio"
 import { LogoEditar, LogoHome } from "./Icons"
 import { preguntas } from "./preguntas.json"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 export function VerPreguntas() {
 
@@ -15,17 +17,17 @@ export function VerPreguntas() {
 
     return (
         <>
-            <body className="bg-gradient-to-br from-orange-300 to-rose-600 min-h-screen">
-                <header>
+            <section className="bg-gradient-to-br from-orange-300 to-rose-600 min-h-screen">
+            <header>
                     <div className="text-center p-8">
-                        <h1 className="font-extrabold animate-flip-down animate-ease-in-out text-5xl">TODAS  LAS PREGUNTAS</h1>
+                        <h1 className="font-extrabold animate-flip-down animate-ease-in-out text-5xl">TODAS LAS PREGUNTAS</h1>
                     </div>
                     <div className="flex justify-between mx-5">
-                        <input className="ms-5 w-3/4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300" type="search" placeholder=" Buscar pregunta" onChange={filtrarPreguntas} />
+                        <input className="ms-5 w-3/4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300" type="search" placeholder=" Buscar partida" onChange={filtrarPreguntas} />
                         <div className="flex gap-7 mx-5">
-                            <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</button>
-                            <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTAS</button>
-                            <a href="" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome />Inicio</a>
+                            <Link to="/crearpartida" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</Link>
+                            <Link to="/introducirpreguntas" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTAS</Link>
+                            <Link to="/" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome/>Inicio</Link>
                         </div>
                     </div>
                 </header>
@@ -49,7 +51,7 @@ export function VerPreguntas() {
                         </div>
                     ))}
                 </main>
-            </body>
+            </section>
         </>
     )
 }
