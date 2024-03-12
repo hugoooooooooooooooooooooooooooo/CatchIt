@@ -6,12 +6,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { LogoHome } from './Icons';
 
 function Registro() {
-    const {register, handleSubmit} = useForm();
+    const { register, handleSubmit } = useForm();
     const [error, setError] = useState();
     const navigate = useNavigate();
-    const onSubmit = async (info) =>{
-        if(info.password === info.passwordRepeated){
-            try{
+    const onSubmit = async (info) => {
+        if (info.password === info.passwordRepeated) {
+            try {
                 const response = await axios.post("http://localhost:8080/api/signin", null, {
                     params: {
                         username: info.username,
@@ -20,59 +20,66 @@ function Registro() {
                     }
                 });
                 navigate("/login");
-            }catch(e){
-                if(e.response.status === 400){
+            } catch (e) {
+                if (e.response.status === 400) {
                     setError("La clave de administrador no es correcta");
-                }else{
+                } else {
                     setError("Error de conexión, compruebe la conexión a internet");
                 }
             }
-        }else{
+        } else {
             setError("Las contraseñas no son iguales, vuelve a intentarlo")
         }
     }
     const usernameId = useId()
     const passwordId = useId()
     const claveAdminId = useId()
-  
+    const repitePasswordId = useId()
+
     return (
-      <>
-      <section className="bg-gradient-to-br from-fuchsia-600 to-violet-800 h-screen flex items-center justify-center">
-        <Link to="/" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome/>Inicio</Link>
-        <div className="bg-white bg-opacity-80 backdrop-blur-lg p-8 rounded-lg shadow-md w-full max-w-md">
-            <h2 className="text-3xl font-extrabold mb-6 text-center">Regístrate</h2>
-  
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor={usernameId} className="block text-sm font-medium text-gray-700">Nombre de Usuario:</label>
-                    <input type="text" id={usernameId} name="username" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    {...register("username")}/>
+        <>
+            <section className="bg-gradient-to-br from-fuchsia-600 to-violet-800 h-screen">
+                <header className='flex justify-end p-3'>
+                   <div className='w-10'>
+                   <Link to="/"><LogoHome /></Link>
+                   </div>
+                </header>
+                <main className='flex justify-center'>
+                <div className="bg-white bg-opacity-80 backdrop-blur-lg p-8 rounded-lg shadow-md w-full max-w-md">
+                    <h2 className="text-3xl font-extrabold mb-6 text-center">Regístrate</h2>
+
+                    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+                        <div>
+                            <label htmlFor={usernameId} className="block text-sm font-medium text-gray-700">Nombre de Usuario:</label>
+                            <input type="text" id={usernameId} name="username" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                {...register("username")} />
+                        </div>
+
+                        <div>
+                            <label htmlFor={repitePasswordId} className="block text-sm font-medium text-gray-700">Contraseña:</label>
+                            <input type="password" id={repitePasswordId} name="password" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                {...register("password")} />
+                        </div>
+
+                        <div>
+                            <label htmlFor={passwordId} className="block text-sm font-medium text-gray-700">Repite la Contraseña:</label>
+                            <input type="password" id={passwordId} name="passwordRepeated" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                {...register("passwordRepeated")} />
+                        </div>
+
+                        <div>
+                            <label htmlFor={claveAdminId} className="block text-sm font-medium text-gray-700">Clave de administrador:</label>
+                            <input type="text" id={claveAdminId} name="key" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                {...register("key")} />
+                        </div>
+
+                        <button type="submit" className="w-full px-4 py-2 bg-pink-600 hover:bg-pink-4h00 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-white">Registrar Cuenta</button>
+                        <Link to="/login" className="flex justify-center transition-transform transform hover:scale-110 hover:cursor-pointer">Volver al Inicio de Sesión</Link>
+                    </form>
                 </div>
-  
-                <div>
-                    <label htmlFor={usernameId} className="block text-sm font-medium text-gray-700">Contraseña:</label>
-                    <input type="password" id={usernameId} name="password" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    {...register("password")}/>
-                </div>
-  
-                <div>
-                    <label htmlFor={passwordId} className="block text-sm font-medium text-gray-700">Repite la Contraseña:</label>
-                    <input type="password" id={passwordId} name="passwordRepeated" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    {...register("passwordRepeated")}/>
-                </div>
-  
-                <div>
-                    <label htmlFor={claveAdminId} className="block text-sm font-medium text-gray-700">Clave de administrador:</label>
-                    <input type="text" id={claveAdminId} name="key" className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    {...register("key")}/>
-                </div>
-  
-                <button type="submit" className="w-full px-4 py-2 bg-pink-600 hover:bg-pink-4h00 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-white">Registrar Cuenta</button>
-                <Link to="/login" className="flex justify-center transition-transform transform hover:scale-110 hover:cursor-pointer">Volver al Inicio de Sesión</Link>
-            </form>
-        </div>
-    </section>
-    </>
+                </main>
+            </section>
+        </>
     );
 }
 

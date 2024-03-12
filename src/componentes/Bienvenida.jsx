@@ -5,29 +5,29 @@ import { UseUser } from "../hooks/UseUser";
 
 function Bienvenida() {
     const navigate = useNavigate();
-    const{user} = UseUser();
+    const{user, setUser} = UseUser();
     const[error, setError] = useState();
+    const [filtro, setFiltro] = useState("")
+    const [partidasFiltradas, setPartidasFiltradas] = useState([]);
     const cerrarSesion = () =>{
-        sessionStorage.removeItem("userId");
         navigate("/");
+        sessionStorage.removeItem("userId");
+        setUser();
     }
     useEffect(() =>{
         if(!user){
             navigate("/");
+        }else{
+            setPartidasFiltradas(user.partidas.filter(partida =>
+                partida.nombre.toLowerCase().includes(filtro.toLowerCase())
+            ))
         }
     },[])
-
-    const [filtro, setFiltro] = useState("")
 
     const filtrarPartidas = (event) => {
         setFiltro(event.target.value)
     }
 
-    const partidas = user.partidas;
-    const partidasFiltradas = partidas.filter(partida =>
-        partida.nombre.toLowerCase().includes(filtro.toLowerCase())
-    )
-    
     return (
         <>
             {
@@ -39,7 +39,7 @@ function Bienvenida() {
                         <h1 className="font-extrabold animate-flip-down animate-ease-in-out text-5xl">HOLA {user.username}, ESTAS SON TUS PARTIDAS</h1>
                     </div>
                     <div className="flex justify-between mx-5">
-                        <input className="ms-5 w-3/4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300" type="search" placeholder=" Buscar partida" onChange={filtrarPartidas}/>
+                        <input className="ms-5 w-3/4 rounded-lg focus:outline-none focus:ring-2 p-4 focus:ring-red-300" type="search" placeholder=" Buscar partida" onChange={filtrarPartidas}/>
                         <div className="flex gap-7 mx-5">
                             <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</button>
                             <Link to="/createPregunta" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTAS</Link>

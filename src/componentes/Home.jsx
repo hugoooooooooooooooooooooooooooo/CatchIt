@@ -4,8 +4,11 @@ import {Rules} from './Rules.jsx'
 import {LogIn} from './LogIn.jsx'
 import React from 'react'
 import Footer from './Footer.jsx'
+import { UseUser } from '../hooks/UseUser.jsx'
+import Bienvenida from './Bienvenida.jsx'
 
 function Home() {
+    const {user} = UseUser();
     return (
         <div>
              <HeaderInicio />
@@ -17,7 +20,13 @@ function Home() {
                     <Rules />
                     </div>
                     <div className="snap-center">
-                    <LogIn/>
+                    {
+                        user ? (
+                            <Bienvenida />
+                        ) : (
+                            <LogIn/>
+                        )
+                    }
                     </div>
                     <Footer></Footer>
                 </main>

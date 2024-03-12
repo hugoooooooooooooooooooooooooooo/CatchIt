@@ -3,6 +3,8 @@ import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { LogoAtras, LogoHome } from './Icons';
+import { Link } from 'react-router-dom';
 
 export function IntroducirPreguntas() {
     const enunciado = useId();
@@ -16,36 +18,50 @@ export function IntroducirPreguntas() {
     const tiempo = useId();
     const navigate = useNavigate();
 
-    const {register, handleSubmit} = useForm();
+    const { register, handleSubmit } = useForm();
 
     const userId = sessionStorage.getItem("userId");
 
-    const onSubmit = async (info) =>{
-        try{
-            const response = await axios.post("http://localhost:8080/api/pregunta", null, {params: {
-                pregunta: info.enunciado,
-                respuestaCorrecta: info.respuestaCorrecta,
-                respuesta1: info.respuesta1,
-                respuesta2: info.respuesta2,
-                respuesta3: info.respuesta3,
-                nivel: info.nivel,
-                dificultad: info.dificultad,
-                asignatura: info.asignatura,
-                tiempo: info.tiempo,
-                idAdmin: userId
-            }});
+    const onSubmit = async (info) => {
+        try {
+            const response = await axios.post("http://localhost:8080/api/pregunta", null, {
+                params: {
+                    pregunta: info.enunciado,
+                    respuestaCorrecta: info.respuestaCorrecta,
+                    respuesta1: info.respuesta1,
+                    respuesta2: info.respuesta2,
+                    respuesta3: info.respuesta3,
+                    nivel: info.nivel,
+                    dificultad: info.dificultad,
+                    asignatura: info.asignatura,
+                    tiempo: info.tiempo,
+                    idAdmin: userId
+                }
+            });
             navigate("/preguntas");
-            
-        }catch(e){
+
+        } catch (e) {
             console.log(e);
         }
     }
 
+    const goBack = () => {
+        navigate(-1);
+    };
+
     return (
         <>
             <section className="bg-gradient-to-br from-orange-300 to-rose-600 h-screen">
-                <header className="font-extrabold animate-flip-down animate-ease-in-out text-5xl text-center p-10">
-                    <h1>INTRODUCIR PREGUNTAS</h1>
+                <header className="flex justify-between font-extrabold animate-flip-down animate-ease-in-out text-5xl text-center p-10">
+                    <button className='w-10' onClick={goBack}>
+                        <LogoAtras />
+                    </button>
+                    <div>
+                        <h1>INTRODUCIR PREGUNTAS</h1>
+                    </div>
+                    <div className='w-10'>
+                        <Link to="/"><LogoHome /></Link>
+                    </div>
                 </header>
                 <form onSubmit={handleSubmit(onSubmit)}
                 >
@@ -53,28 +69,28 @@ export function IntroducirPreguntas() {
                         <div className='w-1/2 flex flex-col gap-10'>
                             <div>
                                 <label className='font-semibold' htmlFor={enunciado}>Enunciado: </label><br />
-                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='enunciado' type="text" id={enunciado} required 
-                                {...register("enunciado")}/>
+                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='enunciado' type="text" id={enunciado} required
+                                    {...register("enunciado")} />
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={resCorrecta}>Respuesta Correcta: </label><br />
-                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuestaCorrecta' type="text" id={resCorrecta} required 
-                                {...register("respuestaCorrecta")}/>
+                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuestaCorrecta' type="text" id={resCorrecta} required
+                                    {...register("respuestaCorrecta")} />
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res1}>Respuesta 1: </label><br />
-                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta1' type="text" id={res1} required 
-                                {...register("respuesta1")}/>
+                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta1' type="text" id={res1} required
+                                    {...register("respuesta1")} />
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res2}>Respuesta 2: </label><br />
-                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta2' type="text" id={res2} required 
-                                {...register("respuesta2")}/>
+                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta2' type="text" id={res2} required
+                                    {...register("respuesta2")} />
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res3}>Respuesta 3: </label><br />
-                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta3' type="text" id={res3} required 
-                                {...register("respuesta3")}/>
+                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta3' type="text" id={res3} required
+                                    {...register("respuesta3")} />
                             </div>
                         </div>
                         <div className='w-auto flex flex-col gap-10'>
@@ -131,8 +147,8 @@ export function IntroducirPreguntas() {
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={tiempo}>Tiempo: </label><br />
-                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' type="number" id={tiempo} name="tiempo" required 
-                                {...register("tiempo")} value="30"/>
+                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' type="number" id={tiempo} name="tiempo" required
+                                    {...register("tiempo")} value="30" />
                             </div>
                         </div>
 
