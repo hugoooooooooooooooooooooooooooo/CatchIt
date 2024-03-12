@@ -4,11 +4,9 @@ import { useForm } from "react-hook-form";
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { LogoHome } from './Icons';
-import { UseUser } from '../hooks/UseUser';
 
 function Registro() {
     const {register, handleSubmit} = useForm();
-    const {setUser} = UseUser();
     const [error, setError] = useState();
     const navigate = useNavigate();
     const onSubmit = async (info) =>{
@@ -21,8 +19,7 @@ function Registro() {
                         key: info.key
                     }
                 });
-                sessionStorage.setItem("userId", response.data.id);
-                navigate("/");
+                navigate("/login");
             }catch(e){
                 if(e.response.status === 400){
                     setError("La clave de administrador no es correcta");

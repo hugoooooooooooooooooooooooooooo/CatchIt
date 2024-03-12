@@ -2,6 +2,7 @@ import React from 'react';
 import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export function IntroducirPreguntas() {
     const enunciado = useId();
@@ -13,6 +14,7 @@ export function IntroducirPreguntas() {
     const dificultad = useId();
     const asignatura = useId();
     const tiempo = useId();
+    const navigate = useNavigate();
 
     const {register, handleSubmit} = useForm();
 
@@ -32,7 +34,7 @@ export function IntroducirPreguntas() {
                 tiempo: info.tiempo,
                 idAdmin: userId
             }});
-            console.log(response.data);
+            navigate("/preguntas");
             
         }catch(e){
             console.log(e);
@@ -51,27 +53,27 @@ export function IntroducirPreguntas() {
                         <div className='w-1/2 flex flex-col gap-10'>
                             <div>
                                 <label className='font-semibold' htmlFor={enunciado}>Enunciado: </label><br />
-                                <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='enunciado' type="text" id={enunciado} required 
+                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='enunciado' type="text" id={enunciado} required 
                                 {...register("enunciado")}/>
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={resCorrecta}>Respuesta Correcta: </label><br />
-                                <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuestaCorrecta' type="text" id={resCorrecta} required 
+                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuestaCorrecta' type="text" id={resCorrecta} required 
                                 {...register("respuestaCorrecta")}/>
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res1}>Respuesta 1: </label><br />
-                                <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta1' type="text" id={res1} required 
+                                <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta1' type="text" id={res1} required 
                                 {...register("respuesta1")}/>
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res2}>Respuesta 2: </label><br />
-                                <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta2' type="text" id={res2} required 
+                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta2' type="text" id={res2} required 
                                 {...register("respuesta2")}/>
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res3}>Respuesta 3: </label><br />
-                                <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta3' type="text" id={res3} required 
+                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta3' type="text" id={res3} required 
                                 {...register("respuesta3")}/>
                             </div>
                         </div>
@@ -79,7 +81,7 @@ export function IntroducirPreguntas() {
                             <div>
                                 <label className='font-semibold' htmlFor={nivel}>Nivel De Pregunta: </label><br />
                                 <select
-                                    className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300'
+                                    className='h-10 w-96 rounded-lg focus:outline-none p-2 focus:ring-2 focus:ring-red-300'
                                     id={dificultad} name="nivel" {...register("nivel")}
                                     required
                                 >
@@ -94,7 +96,7 @@ export function IntroducirPreguntas() {
                             <div>
                                 <label className='font-semibold' htmlFor={dificultad}>Dificultad: </label><br />
                                 <select
-                                    className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300'
+                                    className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 p-2 focus:ring-red-300'
                                     id={dificultad} name="dificultad" {...register("dificultad")}
                                     required
                                 >
@@ -107,7 +109,7 @@ export function IntroducirPreguntas() {
                             <div>
                                 <label className='font-semibold' htmlFor={asignatura}>Asignatura: </label><br />
                                 <select
-                                    className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300'
+                                    className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 p-2 focus:ring-red-300'
                                     id={dificultad} name="asignatura" {...register("asignatura")}
                                     required
                                 >
@@ -129,8 +131,8 @@ export function IntroducirPreguntas() {
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={tiempo}>Tiempo: </label><br />
-                                <input className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' type="number" id={tiempo} name="tiempo" required 
-                                {...register("tiempo")}/>
+                                <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' type="number" id={tiempo} name="tiempo" required 
+                                {...register("tiempo")} value="30"/>
                             </div>
                         </div>
 

@@ -1,35 +1,20 @@
 import {Link, useNavigate} from "react-router-dom";
 import {React, useState, useEffect} from 'react'
-import axios from "axios";
 import { LogoHome } from "./Icons";
 import { UseUser } from "../hooks/UseUser";
 
 function Bienvenida() {
     const navigate = useNavigate();
-    const{user, setUser} = UseUser();
-    const[partidas, setPartidas] = useState([]);
+    const{user} = UseUser();
     const[error, setError] = useState();
-    const userId = sessionStorage.getItem("userId");
     const cerrarSesion = () =>{
         sessionStorage.removeItem("userId");
         navigate("/");
     }
-    const getUser = async () =>{
-        if(userId){
-            try{
-                const response = await axios.get("http://localhost:8080/api/admin/" + userId);
-                setUser(response.data);
-                setPartidas(response.data.partidas);
-            }catch (e){
-                console.log(e);
-            }
-        }
-        else{
+    useEffect(() =>{
+        if(!user){
             navigate("/");
         }
-    }
-    useEffect(() =>{
-        getUser();
     },[])
 
     const [filtro, setFiltro] = useState("")
@@ -37,6 +22,8 @@ function Bienvenida() {
     const filtrarPartidas = (event) => {
         setFiltro(event.target.value)
     }
+
+    const partidas = user.partidas;
     const partidasFiltradas = partidas.filter(partida =>
         partida.nombre.toLowerCase().includes(filtro.toLowerCase())
     )

@@ -1,4 +1,3 @@
-import Form from "./componentes/Form";
 import Registro from './componentes/Registro';
 import {Routes, Route, Link} from "react-router-dom";
 import Preguntas from './componentes/Preguntas';
