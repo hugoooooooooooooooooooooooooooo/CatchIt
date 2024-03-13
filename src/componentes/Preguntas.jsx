@@ -4,35 +4,15 @@ import { UseUser } from '../hooks/UseUser';
 import Pregunta from './Pregunta';
 import { Link, useNavigate,  } from 'react-router-dom';
 import { LogoHome, LogoAtras } from './Icons';
+import usePreguntas from '../hooks/usePreguntas';
 
 function Preguntas() {
-    const[preguntas, setPreguntas] = useState([]);
     const navigate = useNavigate();
     const {user} = UseUser();
-    const getPreguntas = async () =>{
-        try{
-            const response = await axios.get("http://localhost:8080/api/preguntas");
-            setPreguntas(response.data);
-        }catch(e){
-            console.log(e);
-        }
-    }
-    const [filtro, setFiltro] = useState("")
-
-    const filtrarPreguntas = (event) => {
-        setFiltro(event.target.value)
-    }
-
-    const preguntasFiltradas = preguntas.filter(pregunta =>
-        pregunta.pregunta.toLowerCase().includes(filtro.toLowerCase())
-    )
-
-    useEffect(()=>{
-        getPreguntas();
-    },[])
+    const{preguntasFiltradas, filtrarPreguntas} = usePreguntas();
 
     const goBack = () => {
-        navigate(-1);
+        navigate("/bienvenida");
     };
 
     return (
