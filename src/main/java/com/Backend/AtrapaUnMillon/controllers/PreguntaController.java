@@ -46,6 +46,15 @@ public class PreguntaController {
         }
     }
 
+    @Operation(summary = "Obtiene una pregunta por id de admin", tags = {"preguntas"})
+    @ApiResponse(responseCode = "200", description = "Pregunta")
+    @ApiResponse(responseCode = "404", description = "No hay preguntas")
+    @Parameter(name = "idAdmin", required = true, description = "ID del admin", example = "1")
+    @GetMapping("/preguntaAdmin/{idAdmin}")
+    public List<Pregunta> getPreguntaByAdmin(@PathVariable Long idAdmin){
+        return preguntaService.getPreguntaByIdAdmin(idAdmin);
+    }
+
     @Operation(summary = "Crea una pregunta", tags = {"preguntas"})
     @ApiResponse(responseCode = "201", description = "Pregunta creada")
     @ApiResponse(responseCode = "400", description = "Error al crear pregunta")

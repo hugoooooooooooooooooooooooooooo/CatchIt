@@ -34,6 +34,11 @@ public class PreguntaService {
         }
     }
 
+    public List<Pregunta> getPreguntaByIdAdmin(Long idAdmin){
+        List<Pregunta> preguntas = preguntaRepository.findByAdminId(idAdmin);
+        return preguntas;
+    }
+
     public Pregunta createPregunta(String pregunta, String respuestaCorrecta, String respuesta1,
                                String respuesta2, String respuesta3, String nivel,
                                String dificultad, String asignatura, int tiempo,
