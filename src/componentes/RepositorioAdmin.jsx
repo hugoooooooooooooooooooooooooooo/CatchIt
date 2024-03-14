@@ -13,14 +13,14 @@ function RepositorioAdmin() {
     return (
         <>
             <section className="bg-gradient-to-br from-orange-300 to-rose-600 h-screen">
-                <header>
+                <header className="pt-16">
                     <div className="text-center p-8">
-                        <h1 className="font-extrabold animate-flip-down animate-ease-in-out text-5xl">HOLA {user.username}, ESTAS SON TUS PARTIDAS</h1>
+                        <h1 className="font-extrabold animate-flip-down animate-ease-in-out text-5xl">HOLA {user.username.toUpperCase()}, ESTAS SON TUS PARTIDAS</h1>
                     </div>
                     <div className="flex justify-between mx-5">
                         <input className="ms-5 w-3/4 rounded-lg focus:outline-none focus:ring-2 p-4 focus:ring-red-300" type="search" placeholder=" Buscar partida" onChange={filtrarPartidas}/>
                         <div className="flex gap-7 mx-5">
-                            <button className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</button>
+                            <Link to="/createPartida" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">CREAR PARTIDA</Link>
                             <Link to="/createPregunta" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold">INTRODUCIR PREGUNTAS</Link>
                             <Link to="/" className="p-3 bg-red-200 rounded-lg hover:bg-red-300 font-semibold"><LogoHome/>Inicio</Link>
                         </div>

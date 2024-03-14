@@ -75,7 +75,13 @@ export function IntroducirPreguntas() {
                         <LogoAtras />
                     </button>
                     <div>
-                        <h1>INTRODUCIR PREGUNTAS</h1>
+                        {
+                            preguntaId ? (
+                                <h1> EDITAR PREGUNTA</h1>
+                            ) : (
+                                <h1>INTRODUCIR PREGUNTA</h1>
+                        )
+                        }
                     </div>
                     <div className='w-10'>
                         <Link to="/"><LogoHome /></Link>
@@ -147,20 +153,21 @@ export function IntroducirPreguntas() {
                                     id={dificultad} name="asignatura" {...register("asignatura")}
                                     required
                                 >
-                                    <option value="1ESO">Matematicas</option>
-                                    <option value="2ESO">Lengua</option>
-                                    <option value="3ESO">Física</option>
-                                    <option value="4ESO">Quimica</option>
-                                    <option value="1BACH">Biologia</option>
-                                    <option value="1ESO">Geoolgía</option>
-                                    <option value="2BACH">Inglés</option>
-                                    <option value="1ESO">Historia</option>
-                                    <option value="1ESO">Francés</option>
-                                    <option value="1ESO">Música</option>
-                                    <option value="1ESO">Informatica</option>
-                                    <option value="1ESO">Plástica</option>
-                                    <option value="1ESO">Filosofía</option>
-                                    <option value="1ESO">Economía</option>
+                                    <option value="Matematicas">Matematicas</option>
+                                    <option value="Lengua">Lengua</option>
+                                    <option value="Física">Física</option>
+                                    <option value="Quimica">Quimica</option>
+                                    <option value="Biologia">Biologia</option>
+                                    <option value="Geología">Geología</option>
+                                    <option value="Inglés">Inglés</option>
+                                    <option value="Historia">Historia</option>
+                                    <option value="Francés">Francés</option>
+                                    <option value="Música">Música</option>
+                                    <option value="Informatica">Informatica</option>
+                                    <option value="Plástica">Plástica</option>
+                                    <option value="Filosofía">Filosofía</option>
+                                    <option value="Economía">Economía</option>
+                                    <option value="Geografía">Geografía</option>
                                 </select>
                             </div>
                             <div>

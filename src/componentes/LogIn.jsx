@@ -34,15 +34,17 @@ export function LogIn(props) {
     return (
         <>
             <section className="bg-gradient-to-br from-lime-300 to-green-400 h-screen" id="admin">
-                {
-                    props.home && (
-                        <header className='flex justify-end p-5'>
-                           <div className='w-10'>
-                           <Link to="/"><LogoHome /></Link>
-                           </div>
-                        </header>
-                    )
-                }
+                <header className='flex justify-end h-40 items-start'>
+                        {
+                            props.home && (
+
+                                <div className='w-10 m-5'>
+                                    <Link to="/"><LogoHome /></Link>
+                                </div>
+
+                            )
+                        }
+                </header>
                 <main className='flex justify-center items-center'>
                 <div className="bg-white bg-opacity-80 backdrop-blur-lg p-8 rounded-lg shadow-md w-full max-w-md">
                     <h2 className="text-3xl font-extrabold mb-6 text-center">Inicia Sesión</h2>

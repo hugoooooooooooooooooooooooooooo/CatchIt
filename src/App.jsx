@@ -6,6 +6,7 @@ import Home from './componentes/Home';
 import { LogIn } from "./componentes/LogIn";
 import { IntroducirPreguntas } from "./componentes/IntroducirPreguntas";
 import { UseUser } from './hooks/UseUser';
+import { CrearPartida } from './componentes/CrearPartida';
 
 function App() {
   const {user} = UseUser();
@@ -19,6 +20,7 @@ function App() {
         <Route path='/preguntas' element={user ? <Preguntas /> : <Navigate to="/" />} />
         <Route path="/createPregunta" element={user ? <IntroducirPreguntas /> : <Navigate to="/" />} />
         <Route path="/editPregunta/:preguntaId" element={user ? <IntroducirPreguntas /> : <Navigate to="/" />} />
+        <Route path="/createPartida" element={user ? <CrearPartida /> : <Navigate to="/" />} />
       </Routes>
     </div>
   );

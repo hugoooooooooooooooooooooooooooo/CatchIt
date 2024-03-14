@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { UseUser } from "./UseUser";
 
 export default function usePreguntas(){
     const[preguntas, setPreguntas] = useState([]);
+    const[preguntasUser, setPreguntasUser] = useState([]);
     const [filtro, setFiltro] = useState("");
+    const {user} = UseUser();
 
     const getPreguntas = async () =>{
         try{
@@ -14,8 +17,18 @@ export default function usePreguntas(){
         }
     }
 
+    const getPreguntasUser = async () =>{
+        try{
+            const response = await axios.get("http://localhost:8080/api/preguntaAdmin/" + user.id);
+            setPreguntasUser(response.data);
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     useEffect(() =>{
         getPreguntas();
+        getPreguntasUser();
     }, []);
 
     const preguntasFiltradas = preguntas.filter(pregunta =>
@@ -26,5 +39,5 @@ export default function usePreguntas(){
         setFiltro(event.target.value)
     }
 
-    return {preguntasFiltradas, filtrarPreguntas}
+    return {preguntasFiltradas, filtrarPreguntas, preguntasUser}
 }
