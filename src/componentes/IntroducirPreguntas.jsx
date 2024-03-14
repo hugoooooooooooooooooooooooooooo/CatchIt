@@ -1,5 +1,5 @@
 import React from 'react';
-import { useId } from 'react';
+import { useId, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -23,7 +23,7 @@ export function IntroducirPreguntas() {
     const {preguntaId} = useParams();
     const{pregunta} = usePregunta(preguntaId);
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
 
     const onSubmit = async (info) => {
         const infoParams = {
@@ -55,6 +55,14 @@ export function IntroducirPreguntas() {
         }
     }
 
+    useEffect(() => {
+        if (preguntaId && pregunta) {
+            Object.keys(pregunta).forEach((key) => {
+                setValue(key, pregunta[key]);
+            });
+        }
+    }, [preguntaId, pregunta, setValue]);
+
     const goBack = () => {
         navigate(-1);
     };
@@ -80,27 +88,27 @@ export function IntroducirPreguntas() {
                             <div>
                                 <label className='font-semibold' htmlFor={enunciado}>Enunciado: </label><br />
                                 <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='pregunta' type="text" id={enunciado} required
-                                    defaultValue={pregunta.pregunta} {...register("pregunta")}/>
+                                     {...register("pregunta")}/>
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={resCorrecta}>Respuesta Correcta: </label><br />
                                 <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuestaCorrecta' type="text" id={resCorrecta} required
-                                    {...register("respuestaCorrecta")} defaultValue={pregunta.respuestaCorrecta}/>
+                                    {...register("respuestaCorrecta")}/>
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res1}>Respuesta 1: </label><br />
                                 <input className='h-10 w-96 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta1' type="text" id={res1} required
-                                    {...register("respuesta1")} defaultValue={pregunta.respuesta1}/>
+                                    {...register("respuesta1")} />
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res2}>Respuesta 2: </label><br />
                                 <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta2' type="text" id={res2} required
-                                    {...register("respuesta2")} defaultValue={pregunta.respuesta2}/>
+                                    {...register("respuesta2")}/>
                             </div>
                             <div>
                                 <label className='font-semibold' htmlFor={res3}>Respuesta 3: </label><br />
                                 <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' name='respuesta3' type="text" id={res3} required
-                                    {...register("respuesta3")} defaultValue={pregunta.respuesta3}/>
+                                    {...register("respuesta3")} />
                             </div>
                         </div>
                         <div className='w-auto flex flex-col gap-10'>
@@ -108,7 +116,7 @@ export function IntroducirPreguntas() {
                                 <label className='font-semibold' htmlFor={nivel}>Nivel De Pregunta: </label><br />
                                 <select
                                     className='h-10 w-96 rounded-lg focus:outline-none p-2 focus:ring-2 focus:ring-red-300'
-                                    id={dificultad} name="nivel" {...register("nivel")} defaultValue={pregunta.nivel}
+                                    id={dificultad} name="nivel" {...register("nivel")}
                                     required
                                 >
                                     <option value="1ESO">1 ESO</option>
@@ -123,7 +131,7 @@ export function IntroducirPreguntas() {
                                 <label className='font-semibold' htmlFor={dificultad}>Dificultad: </label><br />
                                 <select
                                     className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 p-2 focus:ring-red-300'
-                                    id={dificultad} name="dificultad" {...register("dificultad")} defaultValue={pregunta.dificultad}
+                                    id={dificultad} name="dificultad" {...register("dificultad")}
                                     required
                                 >
                                     <option value="facil">Fácil</option>
@@ -136,7 +144,7 @@ export function IntroducirPreguntas() {
                                 <label className='font-semibold' htmlFor={asignatura}>Asignatura: </label><br />
                                 <select
                                     className='h-10 w-96 rounded-lg focus:outline-none focus:ring-2 p-2 focus:ring-red-300'
-                                    id={dificultad} name="asignatura" {...register("asignatura")} defaultValue={pregunta.asignatura}
+                                    id={dificultad} name="asignatura" {...register("asignatura")}
                                     required
                                 >
                                     <option value="1ESO">Matematicas</option>
@@ -158,7 +166,7 @@ export function IntroducirPreguntas() {
                             <div>
                                 <label className='font-semibold' htmlFor={tiempo}>Tiempo: </label><br />
                                 <input className='h-10 w-96 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300' type="number" id={tiempo} name="tiempo" required
-                                    {...register("tiempo")} placeholder="30 (default)" defaultValue={pregunta.tiempo}/>
+                                    {...register("tiempo")} placeholder="30 (default)"/>
                             </div>
                         </div>
 
